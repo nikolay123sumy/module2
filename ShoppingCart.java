@@ -21,7 +21,7 @@ public class ShoppingCart {
      * Adds new item.
      *
      * @param title item title 1 to 32 symbols
-     * @param price item ptice in USD, > 0
+     * @param price item price in USD, > 0
      * @param quantity item quantity, from 1
      * @param type item type
      *
