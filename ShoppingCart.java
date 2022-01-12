@@ -36,12 +36,7 @@ public class ShoppingCart {
             throw new IllegalArgumentException("Illegal price");
         if (quantity <= 0)
             throw new IllegalArgumentException("Illegal quantity");
-        Item item = new Item();
-        item.title = title;
-        item.price = price;
-        item.quantity = quantity;
-        item.type = type;
-        items.add(item);
+        items.add(new Item(title, price, type, quantity));
     }
 
     /**
@@ -185,6 +180,13 @@ public class ShoppingCart {
         double price;
         int quantity;
         ItemType type;
+
+        public Item(String title, double price, ShoppingCart.ItemType type, int quantity) {
+            this.title = title;
+            this.price = price;
+            this.type = type;
+            this.quantity = quantity;
+        }
     }
 
     /**
