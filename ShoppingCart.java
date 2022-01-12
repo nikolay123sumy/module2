@@ -61,7 +61,7 @@ public class ShoppingCart {
 
         int[] align = {1, -1, 1, 1, 1, 1};
         List<String[]> lines = new ArrayList<>();
-        lines.add(new String[] {"#", "Item", "Price", "Quan.", "Discount", "Total"});
+        lines.add(new String[]{"#", "Item", "Price", "Quan.", "Discount", "Total"});
         var total = addTicketLines(lines);
         lines.add(new String[]{String.valueOf(items.size()), "", "", "", "", MONEY.format(total)});
         // column max length
@@ -134,16 +134,15 @@ public class ShoppingCart {
     public static void appendFormatted(StringBuilder sb, String value, int align, int width) {
         if (value.length() > width)
             value = value.substring(0, width);
-        int before = (align == 0)
-                ? (width - value.length()) / 2
-                : (align == -1) ? 0 : width - value.length();
+        int before = switch (align) {
+            case -1 -> 0;
+            case 1 -> width - value.length();
+            default -> (width - value.length()) / 2;
+        };
         int after = width - value.length() - before;
-        while (before-- > 0)
-            sb.append(" ");
-        sb.append(value);
-        while (after-- > 0)
-            sb.append(" ");
-        sb.append(" ");
+        sb.append(" ".repeat(before))
+                .append(value)
+                .append(" ".repeat(after + 1));
     }
 
     /**
